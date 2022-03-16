@@ -1,23 +1,24 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.IO;
 
-namespace Search
+namespace WindowsFormsApp1
 {
-    class Searching
+    internal class Searching
     {
         private string fileToSearch;
-        private string rootPath
+        private string rootPath;
 
         public Searching(string fileToSearch, string rootPath)
         {
-            this.fileToSearch=fileToSearch;
-            this.rootPath=rootPath;
+            this.fileToSearch = fileToSearch;
+            this.rootPath = rootPath;
         }
 
-        public BFS()
+        public void BFS()
         {
             bool found = false;
             // string[] dirs = Directory.GetFileSystemEntries(rootPath);
@@ -38,13 +39,13 @@ namespace Search
                         if (String.Equals(fileToSearch, fileName))
                         {
                             Console.WriteLine("found");
-                            found=true;
+                            found = true;
                             return;
                         }
                     }
                 }
                 string[] dirs = Directory.GetDirectories(current);
-                if (dirs!=null)
+                if (dirs != null)
                 {
                     foreach (string dir in dirs)
                     {
@@ -61,4 +62,3 @@ namespace Search
         }
     }
 }
-

@@ -17,9 +17,9 @@ namespace WindowsFormsApp1
             /// Application.EnableVisualStyles();
             /// Application.SetCompatibleTextRenderingDefault(false);
             /// Application.Run(new Form1());
-            fileToSearch=@"Algoritma-Greedy-(2022)-Bag3"
-            rootPath= @"D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy"
-            Searching searchObj(fileToSearch, rootPath);
+            string fileToSearch=@"test2.txt";
+            string rootPath= @"C:\Users\mfaja\Desktop\Tugas\Semester 4";
+            Searching searchObj = new Searching(fileToSearch, rootPath);
             searchObj.BFS();
         }
     }
