@@ -14,13 +14,9 @@ namespace WindowsFormsApp1
         [STAThread]
         static void Main()
         {
-            /// Application.EnableVisualStyles();
-            /// Application.SetCompatibleTextRenderingDefault(false);
-            /// Application.Run(new Form1());
-            fileToSearch=@"Algoritma-Greedy-(2022)-Bag3"
-            rootPath= @"D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy"
-            Searching searchObj(fileToSearch, rootPath);
-            searchObj.BFS();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
         }
     }
 }
