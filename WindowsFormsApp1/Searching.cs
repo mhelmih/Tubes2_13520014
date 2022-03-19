@@ -19,8 +19,9 @@ namespace WindowsFormsApp1
         public List<String> visitedPath;
 
 
-        public Searching(string rootPath, string fileToSearch)
+        public Searching(string rootPath, string fileToSearch, bool isAllOccurence)
         {
+            this.isAllOccurence=isAllOccurence;
             this.fileToSearch=fileToSearch;
             this.rootPath=rootPath;
             // Ctr Searching pass object Folder
@@ -112,7 +113,12 @@ namespace WindowsFormsApp1
     
         public List<String> getFilePath()
         {
-            return filePath;
+            return this.filePath;
+        }
+
+        public List<String> getRightPath()
+        {
+            return this.rightPath;
         }
 
         public void generatePath(Folder rightDir)
