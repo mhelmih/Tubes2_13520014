@@ -9,3 +9,19 @@ C:\Users\LENOVO\HELMI\Kampus\Kuliah\Semester-4\IF2211-Strategi-Algoritma\Tugas\T
 C:\Users\LENOVO\HELMI\Kampus\Kuliah\Semester-4\IF2211-Strategi-Algoritma\Tugas\Tubes2\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\LENOVO\HELMI\Kampus\Kuliah\Semester-4\IF2211-Strategi-Algoritma\Tugas\Tubes2\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
 C:\Users\LENOVO\HELMI\Kampus\Kuliah\Semester-4\IF2211-Strategi-Algoritma\Tugas\Tubes2\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.SuggestedBindingRedirects.cache
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\bin\Debug\AutomaticGraphLayout.dll
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\bin\Debug\AutomaticGraphLayout.Drawing.dll
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\bin\Debug\Microsoft.Msagl.WpfGraphControl.dll
+D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete

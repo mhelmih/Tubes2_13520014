@@ -11,12 +11,22 @@ namespace WindowsFormsApp1
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        [STAThread]
+        //[STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Form1());
+            string root = @"D:\OneDrive - Institut Teknologi Bandung\Semester 4\Algorithm Strategy";
+            string fileToSearch = @"BFS-DFS-2021-Bag2";
+            Searching search = new Searching(root, fileToSearch);
+            search.DFS();
+
+            folderGraph fg = new folderGraph();
+            fg.generateGraph(root, search);
+            fg.showGraph();
+
         }
+
     }
 }
