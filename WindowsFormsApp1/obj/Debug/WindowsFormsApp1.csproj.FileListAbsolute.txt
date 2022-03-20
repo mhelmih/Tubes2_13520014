@@ -9,3 +9,19 @@ C:\Users\LENOVO\HELMI\Kampus\Kuliah\Semester-4\IF2211-Strategi-Algoritma\Tugas\T
 C:\Users\LENOVO\HELMI\Kampus\Kuliah\Semester-4\IF2211-Strategi-Algoritma\Tugas\Tubes2\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\LENOVO\HELMI\Kampus\Kuliah\Semester-4\IF2211-Strategi-Algoritma\Tugas\Tubes2\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
 C:\Users\LENOVO\HELMI\Kampus\Kuliah\Semester-4\IF2211-Strategi-Algoritma\Tugas\Tubes2\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.AssemblyReference.cache
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.SuggestedBindingRedirects.cache
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\bin\Debug\AutomaticGraphLayout.dll
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\bin\Debug\AutomaticGraphLayout.Drawing.dll
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\bin\Debug\Microsoft.Msagl.WpfGraphControl.dll
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener4\FolderCrawling\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
