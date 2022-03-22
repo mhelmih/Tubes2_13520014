@@ -43,7 +43,9 @@
             this.choose_folder_button = new System.Windows.Forms.Button();
             this.directory = new System.Windows.Forms.Label();
             this.graph_panel = new System.Windows.Forms.Panel();
+            this.viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             this.side_panel.SuspendLayout();
+            this.graph_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // header
@@ -56,7 +58,6 @@
             this.header.TabIndex = 0;
             this.header.Text = "Folder Crawling";
             this.header.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.header.Click += new System.EventHandler(this.label1_Click);
             // 
             // choose_folder_label
             // 
@@ -68,7 +69,6 @@
             this.choose_folder_label.TabIndex = 3;
             this.choose_folder_label.Text = "Choose starting directory";
             this.choose_folder_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.choose_folder_label.Click += new System.EventHandler(this.label4_Click);
             // 
             // side_panel
             // 
@@ -89,11 +89,10 @@
             this.side_panel.Name = "side_panel";
             this.side_panel.Size = new System.Drawing.Size(271, 577);
             this.side_panel.TabIndex = 4;
-            this.side_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // search_button
             // 
-            this.search_button.BackColor = System.Drawing.Color.DodgerBlue;
+            this.search_button.BackColor = System.Drawing.Color.Black;
             this.search_button.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
             this.search_button.FlatAppearance.BorderSize = 0;
             this.search_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -105,7 +104,7 @@
             this.search_button.TabIndex = 11;
             this.search_button.Text = "Search";
             this.search_button.UseVisualStyleBackColor = false;
-            this.search_button.Click += new System.EventHandler(this.button1_Click);
+            this.search_button.Click += new System.EventHandler(this.search_button_Click);
             // 
             // BFS_button
             // 
@@ -176,10 +175,10 @@
             // 
             // choose_folder_button
             // 
-            this.choose_folder_button.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.choose_folder_button.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.choose_folder_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.choose_folder_button.Font = new System.Drawing.Font("Montserrat", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.choose_folder_button.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.choose_folder_button.ForeColor = System.Drawing.Color.Black;
             this.choose_folder_button.Location = new System.Drawing.Point(33, 119);
             this.choose_folder_button.Name = "choose_folder_button";
             this.choose_folder_button.Size = new System.Drawing.Size(111, 25);
@@ -200,21 +199,60 @@
             this.directory.TabIndex = 5;
             this.directory.Text = "No Folder Chosen";
             this.directory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.directory.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // graph_panel
             // 
             this.graph_panel.BackColor = System.Drawing.Color.White;
+            this.graph_panel.Controls.Add(this.viewer);
             this.graph_panel.Location = new System.Drawing.Point(295, 33);
             this.graph_panel.Name = "graph_panel";
             this.graph_panel.Size = new System.Drawing.Size(633, 295);
             this.graph_panel.TabIndex = 5;
             // 
+            // viewer
+            // 
+            this.viewer.ArrowheadLength = 10D;
+            this.viewer.AsyncLayout = false;
+            this.viewer.AutoScroll = true;
+            this.viewer.BackwardEnabled = false;
+            this.viewer.BuildHitTree = true;
+            this.viewer.CurrentLayoutMethod = Microsoft.Msagl.GraphViewerGdi.LayoutMethod.UseSettingsOfTheGraph;
+            this.viewer.EdgeInsertButtonVisible = true;
+            this.viewer.FileName = "";
+            this.viewer.ForwardEnabled = false;
+            this.viewer.Graph = null;
+            this.viewer.InsertingEdge = false;
+            this.viewer.LayoutAlgorithmSettingsButtonVisible = true;
+            this.viewer.LayoutEditingEnabled = true;
+            this.viewer.Location = new System.Drawing.Point(0, 0);
+            this.viewer.LooseOffsetForRouting = 0.25D;
+            this.viewer.MouseHitDistance = 0.05D;
+            this.viewer.Name = "viewer";
+            this.viewer.NavigationVisible = true;
+            this.viewer.NeedToCalculateLayout = true;
+            this.viewer.OffsetForRelaxingInRouting = 0.6D;
+            this.viewer.PaddingForEdgeRouting = 8D;
+            this.viewer.PanButtonPressed = false;
+            this.viewer.SaveAsImageEnabled = true;
+            this.viewer.SaveAsMsaglEnabled = true;
+            this.viewer.SaveButtonVisible = true;
+            this.viewer.SaveGraphButtonVisible = true;
+            this.viewer.SaveInVectorFormatEnabled = true;
+            this.viewer.Size = new System.Drawing.Size(633, 295);
+            this.viewer.TabIndex = 0;
+            this.viewer.TightOffsetForRouting = 0.125D;
+            this.viewer.ToolBarIsVisible = true;
+            this.viewer.Transform = ((Microsoft.Msagl.Core.Geometry.Curves.PlaneTransformation)(resources.GetObject("viewer.Transform")));
+            this.viewer.UndoRedoButtonsVisible = true;
+            this.viewer.WindowZoomButtonPressed = false;
+            this.viewer.ZoomF = 1D;
+            this.viewer.ZoomWindowThreshold = 0.05D;
+            // 
             // CrawlingBackToYou
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightBlue;
+            this.BackColor = System.Drawing.Color.IndianRed;
             this.ClientSize = new System.Drawing.Size(951, 577);
             this.Controls.Add(this.graph_panel);
             this.Controls.Add(this.side_panel);
@@ -226,9 +264,9 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Folder Crawling";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.side_panel.ResumeLayout(false);
             this.side_panel.PerformLayout();
+            this.graph_panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -249,6 +287,8 @@
         private System.Windows.Forms.Button search_button;
         private System.Windows.Forms.RadioButton BFS_button;
         private System.Windows.Forms.Panel graph_panel;
+        private Microsoft.Msagl.GraphViewerGdi.GViewer viewer;
+        private Microsoft.Msagl.Drawing.Graph graph;
     }
 }
 

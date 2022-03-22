@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp1
@@ -21,6 +22,7 @@ namespace WindowsFormsApp1
         public CrawlingBackToYou()
         {
             InitializeComponent();
+            graph = new Microsoft.Msagl.Drawing.Graph("graph");
             dir = "";
             filename = "";
             find_all = false;
@@ -28,34 +30,15 @@ namespace WindowsFormsApp1
             isBFS = false;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            find_all = !find_all;
+            if (this.find_all)
+            {
+                this.find_all = false;
+            } else
+            {
+                this.find_all = true;
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -63,7 +46,83 @@ namespace WindowsFormsApp1
             filename = filename_textbox.Text;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void generateGraph(Folder folder, Searching s)
+        {
+            // Masih error
+            int j = 0;
+            Boolean flag = false;
+            Folder ftemp = folder;
+            string[] listAllFiles = ftemp.getAllFiles();
+
+            while (j < folder.getAllFiles().Length && !flag)
+            {
+                string s1 = Path.GetFileName(ftemp.getDirname());
+                if (ftemp.getParent() != null)
+                {
+                    s1 = Path.GetFileName(ftemp.getParent().getDirname()) + "/" + s1;
+                }
+                string s2 = Path.GetFileName(listAllFiles[j]);
+                if (listAllFiles[j] == s.getFilePath()[0] && s.getFilePath().Count > 0)
+                {
+                    this.graph.AddEdge(s1, s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+                    flag = true;
+                }
+                else
+                {
+                    this.graph.AddEdge(s1, s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                    j++;
+                }
+
+            }
+
+            if (!flag)
+            {
+
+                foreach (Folder i in ftemp.getAdj())
+                {
+                    String s1 = Path.GetFileName(ftemp.getDirname());
+                    if (ftemp.getParent() != null)
+                    {
+                        s1 = Path.GetFileName(ftemp.getParent().getDirname()) + "/" + s1;
+                    }
+                    String s2 = Path.GetFileName(i.getDirname());
+                    if (i.getParent() != null)
+                    {
+                        s2 = Path.GetFileName(i.getParent().getDirname()) + "/" + s2;
+                    }
+                    String visit1 = ftemp.getDirname();
+                    String visit2 = i.getDirname();
+                    List<String> rightPath = s.getRightPath();
+                    List<String> visitedPath = s.getVisitedPath();
+                    if (visitedPath.Contains(visit1) && visitedPath.Contains(visit2))
+                    {
+                        if (rightPath.Contains(visit1) && rightPath.Contains(visit2))
+                        {
+                            this.graph.AddEdge(s1, s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+                        }
+                        else
+                        {
+                            this.graph.AddEdge(s1, s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                        }
+                        generateGraph(i, s);
+                    }
+                    else
+                    {
+                        this.graph.AddEdge(s1, s2);
+                    }
+
+                }
+
+            }
+        }
+
+        public void showGraph()
+        {
+            this.viewer.Graph = this.graph;
+            this.viewer.Dock = System.Windows.Forms.DockStyle.Fill;
+        }
+
+        private void search_button_Click(object sender, EventArgs e)
         {
             Searching search = new Searching(this.dir, this.filename, this.find_all);
             search.BFS();
@@ -72,9 +131,14 @@ namespace WindowsFormsApp1
                 Console.WriteLine(search.getFilePath()[i]);
             }
             Folder a = new Folder(this.dir);
-            folderGraph fg = new folderGraph();
-            fg.generateGraph(a, search);
-            fg.showGraph();
+            
+            if (this.graph != null)
+            {
+                this.graph = null;
+                this.graph = new Microsoft.Msagl.Drawing.Graph("graph");
+            }
+            generateGraph(a, search);
+            showGraph();
         }
 
         private void choose_folder_button_Click(object sender, EventArgs e)
@@ -91,26 +155,26 @@ namespace WindowsFormsApp1
 
         private void DFS_button_CheckedChanged(object sender, EventArgs e)
         {
-            if (!isBFS && !isDFS)
+            if (!this.isBFS && !this.isDFS)
             {
-                isDFS = true;
+                this.isDFS = true;
             } else
             {
-                isDFS = true;
-                isBFS = false;
+                this.isDFS = true;
+                this.isBFS = false;
             }
         }
 
         private void BFS_button_CheckedChanged(object sender, EventArgs e)
         {
-            if (!isBFS && !isDFS)
+            if (!this.isBFS && !this.isDFS)
             {
-                isBFS = true;
+                this.isBFS = true;
             }
             else
             {
-                isDFS = false;
-                isBFS = true;
+                this.isDFS = false;
+                this.isBFS = true;
             }
         }
 
