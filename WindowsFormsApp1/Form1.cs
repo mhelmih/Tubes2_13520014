@@ -49,37 +49,130 @@ namespace WindowsFormsApp1
         private void generateGraph(Folder folder, Searching s)
         {
             // Masih error
+            // Masih error
             int j = 0;
             Boolean flag = false;
             Folder ftemp = folder;
+            Stack<Folder> fileStack = new Stack<Folder>();
+            Queue<Folder> fileQueue = new Queue<Folder>();
 
-            generateFileGraph(ftemp, s);
+            List<String> rightPath = s.getRightPath();
+            List<String> visitedPath = s.getVisitedPath();
 
-            foreach (Folder i in ftemp.getAdj())
+
+            if (this.isDFS)
             {
-                String s1 = Path.GetFileName(ftemp.getDirname());
-                String s2 = Path.GetFileName(i.getDirname());
-                String visit1 = ftemp.getDirname();
-                String visit2 = i.getDirname();
-                List<String> rightPath = s.getRightPath();
-                List<String> visitedPath = s.getVisitedPath();
-                if (visitedPath.Contains(visit1) && visitedPath.Contains(visit2))
+                fileStack.Push(ftemp);
+                while(fileStack.Count > 0)
                 {
-                    if (rightPath.Contains(visit1) && rightPath.Contains(visit2))
+                    Folder temp2 = fileStack.Pop();
+                    
+                    if (temp2.getParent() != null)
                     {
-                        this.graph.AddEdge(s1, s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+                        String parent = temp2.getParent().getDirname();
+                        String visit = temp2.getDirname();
+                        if (visitedPath.Contains(parent) && visitedPath.Contains(visit))
+                        {
+                            if (rightPath.Contains(parent) && rightPath.Contains(visit))
+                            {
+                                this.graph.AddEdge(parent, visit).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+                                this.graph.FindNode(parent).LabelText = Path.GetFileName(parent);
+                                this.graph.FindNode(parent).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+                                this.graph.FindNode(visit).LabelText = Path.GetFileName(visit);
+                                this.graph.FindNode(visit).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+                            }
+                            else
+                            {
+                                this.graph.AddEdge(parent, visit).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                                this.graph.FindNode(parent).LabelText = Path.GetFileName(parent);
+                                this.graph.FindNode(parent).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                                this.graph.FindNode(visit).LabelText = Path.GetFileName(visit);
+                                this.graph.FindNode(visit).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                            }
+                            generateFileGraph(temp2, s);
+
+                        }
+                        else
+                        {
+                            this.graph.AddEdge(parent, visit);
+                            this.graph.FindNode(parent).LabelText = Path.GetFileName(parent);
+                            this.graph.FindNode(visit).LabelText = Path.GetFileName(visit);
+                            
+                        }
                     }
                     else
                     {
-                        this.graph.AddEdge(s1, s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                        generateFileGraph(temp2, s);
                     }
-                    generateGraph(i, s);
-                }
-                else
-                {
-                    this.graph.AddEdge(s1, s2);
-                }
 
+                    if (s.getVisitedPath().Contains(temp2.getDirname()))
+                    {
+                        List<Folder> temp3 = temp2.getAdj();
+                        temp3.Reverse();
+                        foreach (Folder i in temp3)
+                        {
+                            
+                            fileStack.Push(i);
+                            
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+                fileQueue.Enqueue(ftemp);
+                while(fileQueue.Count > 0)
+                {
+                    Folder temp2 = fileQueue.Dequeue();
+                    if (temp2.getParent() != null)
+                    {
+                        String parent = temp2.getParent().getDirname();
+                        String visit = temp2.getDirname();
+                        if (visitedPath.Contains(parent) && visitedPath.Contains(visit))
+                        {
+                            if (rightPath.Contains(parent) && rightPath.Contains(visit))
+                            {
+                                this.graph.AddEdge(parent, visit).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+                                this.graph.FindNode(parent).LabelText = Path.GetFileName(parent);
+                                this.graph.FindNode(parent).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+                                this.graph.FindNode(visit).LabelText = Path.GetFileName(visit);
+                                this.graph.FindNode(visit).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+                            }
+                            else
+                            {
+                                this.graph.AddEdge(parent, visit).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                                this.graph.FindNode(parent).LabelText = Path.GetFileName(parent);
+                                this.graph.FindNode(parent).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                                this.graph.FindNode(visit).LabelText = Path.GetFileName(visit);
+                                this.graph.FindNode(visit).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                            }
+                            generateFileGraph(temp2, s);
+
+                        }
+                        else
+                        {
+                            this.graph.AddEdge(parent, visit);
+                            this.graph.FindNode(parent).LabelText = Path.GetFileName(parent);
+                            this.graph.FindNode(visit).LabelText = Path.GetFileName(visit);
+                            
+                        }
+                    }
+                    else
+                    {
+                        generateFileGraph(temp2, s);
+                    }
+
+                    if (s.getVisitedPath().Contains(temp2.getDirname()))
+                    {
+                        foreach (Folder i in temp2.getAdj())
+                        {
+                            
+                             fileQueue.Enqueue(i);
+                            
+                        }
+                    }
+                }
             }
         }
 
@@ -92,16 +185,15 @@ namespace WindowsFormsApp1
 
             while (j < folder.getAllFiles().Length && !flag)
             {
-                string s1 = Path.GetFileName(ftemp.getDirname());
-                if (ftemp.getParent() != null)
-                {
-                    s1 = Path.GetFileName(ftemp.getParent().getDirname()) + "/" + s1;
-                }
-                string s2 = Path.GetFileName(ftemp.getDirname()) + "/" + Path.GetFileName(listAllFiles[j]);
-                string s3 = "";
+                string s1 = ftemp.getDirname();
+                string s2 = listAllFiles[j];
                 if (s.getFilePath().Contains(listAllFiles[j]))
                 {
                     this.graph.AddEdge(s1, s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+                    this.graph.FindNode(s1).LabelText = Path.GetFileName(s1);
+                    this.graph.FindNode(s1).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+                    this.graph.FindNode(s2).LabelText = Path.GetFileName(s2);
+                    this.graph.FindNode(s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
                     if (this.find_all)
                     {
                         flag = false;
@@ -117,6 +209,10 @@ namespace WindowsFormsApp1
                 else
                 {
                     this.graph.AddEdge(s1, s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                    this.graph.FindNode(s1).LabelText = Path.GetFileName(s1);
+                    this.graph.FindNode(s1).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                    this.graph.FindNode(s2).LabelText = Path.GetFileName(s2);
+                    this.graph.FindNode(s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                     j++;
                 }
             }
@@ -140,11 +236,6 @@ namespace WindowsFormsApp1
                 else
                 {
                     search.DFS();
-                }
-
-                for (int i = 0; i < search.getFilePath().Count; i++)
-                {
-                    Console.WriteLine(search.getFilePath()[i]);
                 }
                 Folder a = new Folder(this.dir);
 

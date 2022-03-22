@@ -36,7 +36,6 @@ namespace WindowsFormsApp1
             Folder check = new Folder(this.rootPath);
             Stack<Folder> temp = new Stack<Folder>();
 
-            // Cuma nyari 1 file
             string str = "";
             Boolean found = false;
             temp.Push(check);
@@ -46,8 +45,7 @@ namespace WindowsFormsApp1
                 {
                     Folder temp2 = temp.Pop();
                     this.visitedPath.Add(temp2.getDirname());
-                    if (temp2.getVisited() == false)
-                    {
+                    
                         if (temp2.checkFile(this.fileToSearch))
                         {
 
@@ -55,14 +53,12 @@ namespace WindowsFormsApp1
                             generatePath(temp2);
                             this.filePath.Add(str);
                         }
-                    }
-
-                    foreach (Folder i in temp2.getAdj())
+                    
+                    List<Folder> temp3 = temp2.getAdj();
+                    temp3.Reverse();
+                    foreach (Folder i in temp3)
                     {
-                        if (!i.getVisited())
-                        {
-                            temp.Push(i);
-                        }
+                        temp.Push(i);
                     }
 
                 }
@@ -83,13 +79,11 @@ namespace WindowsFormsApp1
                             found = true;
                         }
                     }
-
-                    foreach (Folder i in temp2.getAdj())
+                    List<Folder> temp3 = temp2.getAdj();
+                    temp3.Reverse();
+                    foreach (Folder i in temp3)
                     {
-                        if (!i.getVisited())
-                        {
-                            temp.Push(i);
-                        }
+                        temp.Push(i);
                     }
 
                 }
