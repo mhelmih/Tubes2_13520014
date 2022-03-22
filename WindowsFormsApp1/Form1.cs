@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class Form1 : Form
+    public partial class CrawlingBackToYou : Form
     {
         string dir;
         string filename;
@@ -18,7 +18,7 @@ namespace WindowsFormsApp1
         Boolean isDFS;
         Boolean isBFS;
 
-        public Form1()
+        public CrawlingBackToYou()
         {
             InitializeComponent();
             dir = "";
@@ -53,11 +53,6 @@ namespace WindowsFormsApp1
 
         }
 
-        private void close_button_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             find_all = !find_all;
@@ -70,7 +65,16 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            Searching search = new Searching(this.dir, this.filename, this.find_all);
+            search.BFS();
+            for (int i = 0; i < search.getFilePath().Count; i++)
+            {
+                Console.WriteLine(search.getFilePath()[i]);
+            }
+            Folder a = new Folder(this.dir);
+            folderGraph fg = new folderGraph();
+            fg.generateGraph(a, search);
+            fg.showGraph();
         }
 
         private void choose_folder_button_Click(object sender, EventArgs e)
@@ -87,12 +91,28 @@ namespace WindowsFormsApp1
 
         private void DFS_button_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (!isBFS && !isDFS)
+            {
+                isDFS = true;
+            } else
+            {
+                isDFS = true;
+                isBFS = false;
+            }
         }
 
         private void BFS_button_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (!isBFS && !isDFS)
+            {
+                isBFS = true;
+            }
+            else
+            {
+                isDFS = false;
+                isBFS = true;
+            }
         }
+
     }
 }
