@@ -77,7 +77,6 @@ namespace WindowsFormsApp1
                     {
                         if (temp2.checkFile(this.fileToSearch))
                         {
-
                             str = temp2.getFilePath(this.fileToSearch);
                             generatePath(temp2);
                             this.filePath.Add(str);
@@ -110,33 +109,24 @@ namespace WindowsFormsApp1
             {
                 Folder current = fileQueue.Dequeue();
                 this.visitedPath.Add(current.getDirname());
+                // check if current folder contains file(s)
                 if (current.getAllFiles().Count() > 0)
                 {
-
+                    // check if current folder contains file name that we search
                     if (current.checkFile(this.fileToSearch))
                     {
                         filePath.Add(current.getFilePath(fileToSearch));
                         generatePath(current);
-                        if (!found)
-                        {
-                            found = true;
-                            
-                            if (!isAllOccurence)
-                            {
-                                return;
-                            }
-                        }
-
-
+                        found = true;
                     }
                 }
                 foreach (Folder dir in current.getAdj())
                 {
                     fileQueue.Enqueue(dir);
                 }
-
             }
-            return;
+                
+
         }
 
         public List<String> getFilePath()
@@ -165,8 +155,6 @@ namespace WindowsFormsApp1
         }
 
 
-    }
-
-
+        }
     
 }
