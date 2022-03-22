@@ -110,18 +110,17 @@ namespace WindowsFormsApp1
             {
                 Folder current = fileQueue.Dequeue();
                 this.visitedPath.Add(current.getDirname());
-                //string[] files = Directory.GetFiles(current);
                 if (current.getAllFiles().Count() > 0)
                 {
 
                     if (current.checkFile(this.fileToSearch))
                     {
                         filePath.Add(current.getFilePath(fileToSearch));
-
+                        generatePath(current);
                         if (!found)
                         {
                             found = true;
-                            generatePath(current);
+                            
                             if (!isAllOccurence)
                             {
                                 return;
@@ -169,101 +168,5 @@ namespace WindowsFormsApp1
     }
 
 
-    class folderGraph
-    {
-        public System.Windows.Forms.Form form;
-        public Microsoft.Msagl.GraphViewerGdi.GViewer viewer;
-        public Microsoft.Msagl.Drawing.Graph graph;
-        private Stack<Folder> temp;
-
-        public folderGraph()
-        {
-            this.form = new System.Windows.Forms.Form();
-            this.viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
-            this.graph = new Microsoft.Msagl.Drawing.Graph("graph");
-            this.temp = new Stack<Folder>();
-        }
-
-        public void generateGraph(Folder folder, Searching s)
-        {
-            // Masih error
-            int j  = 0;
-            Boolean flag = false;
-            Folder ftemp = folder;
-            string[] listAllFiles = ftemp.getAllFiles();
-
-            while (j < folder.getAllFiles().Length && !flag)
-            {
-                string s1 = Path.GetFileName(ftemp.getDirname());
-                if (ftemp.getParent() != null)
-                {
-                    s1 = Path.GetFileName(ftemp.getParent().getDirname()) + "/" + s1;
-                }
-                string s2 = Path.GetFileName(listAllFiles[j]);
-                if (listAllFiles[j] == s.getFilePath()[0] && s.getFilePath().Count > 0)
-                {
-                    this.graph.AddEdge(s1, s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
-                    flag = true;
-                }
-                else
-                {
-                    this.graph.AddEdge(s1, s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
-                    j++;
-                }
-
-            }
-
-            if (!flag)
-            {
-                
-                foreach (Folder i in ftemp.getAdj())
-                {
-                    String s1 = Path.GetFileName(ftemp.getDirname());
-                    if (ftemp.getParent() != null)
-                    {
-                        s1 = Path.GetFileName(ftemp.getParent().getDirname()) + "/" + s1;
-                    }
-                    String s2 = Path.GetFileName(i.getDirname());
-                    if (i.getParent() != null)
-                    {
-                        s2 = Path.GetFileName(i.getParent().getDirname()) + "/" + s2;
-                    }
-                    String visit1 = ftemp.getDirname();
-                    String visit2 = i.getDirname();
-                    List<String> rightPath = s.getRightPath();
-                    List<String> visitedPath = s.getVisitedPath();
-                    if (visitedPath.Contains(visit1) && visitedPath.Contains(visit2))
-                    {
-                        if (rightPath.Contains(visit1) && rightPath.Contains(visit2))
-                        {
-                            this.graph.AddEdge(s1, s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
-                        }
-                        else
-                        {
-                            this.graph.AddEdge(s1, s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
-                        }
-                        generateGraph(i, s);
-                    }
-                    else
-                    {
-                        this.graph.AddEdge(s1, s2);
-                    }
-
-                }
-
-            }
-        }
-
-        public void showGraph()
-        {
-            this.viewer.Graph = this.graph;
-            this.form.SuspendLayout();
-            this.viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.form.Controls.Add(this.viewer);
-            this.form.ResumeLayout();
-            this.form.ShowDialog();
-        }
-
-
-    }
+    
 }
