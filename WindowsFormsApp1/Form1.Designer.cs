@@ -297,7 +297,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.full_path_panel.AutoScroll = true;
             this.full_path_panel.AutoSize = true;
-            this.full_path_panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.full_path_panel.BackColor = System.Drawing.Color.White;
             this.full_path_panel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.full_path_panel.ColumnCount = 1;
@@ -330,7 +329,6 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Folder Crawling";
-            this.Load += new System.EventHandler(this.CrawlingBackToYou_Load);
             this.side_panel.ResumeLayout(false);
             this.side_panel.PerformLayout();
             this.graph_panel.ResumeLayout(false);

@@ -56,7 +56,6 @@ namespace WindowsFormsApp1
             List<String> rightPath = s.getRightPath();
             List<String> visitedPath = s.getVisitedPath();
 
-
             if (this.isDFS)
             {
                 fileStack.Push(ftemp);
@@ -94,7 +93,6 @@ namespace WindowsFormsApp1
                             this.graph.AddEdge(parent, visit);
                             this.graph.FindNode(parent).LabelText = Path.GetFileName(parent);
                             this.graph.FindNode(visit).LabelText = Path.GetFileName(visit);
-                            
                         }
                     }
                     else
@@ -108,12 +106,9 @@ namespace WindowsFormsApp1
                         temp3.Reverse();
                         foreach (Folder i in temp3)
                         {
-                            
                             fileStack.Push(i);
-                            
                         }
                     }
-
                 }
             }
             else
@@ -145,14 +140,12 @@ namespace WindowsFormsApp1
                                 this.graph.FindNode(visit).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                             }
                             generateFileGraph(temp2, s);
-
                         }
                         else
                         {
                             this.graph.AddEdge(parent, visit);
                             this.graph.FindNode(parent).LabelText = Path.GetFileName(parent);
                             this.graph.FindNode(visit).LabelText = Path.GetFileName(visit);
-                            
                         }
                     }
                     else
@@ -164,9 +157,7 @@ namespace WindowsFormsApp1
                     {
                         foreach (Folder i in temp2.getAdj())
                         {
-                            
                              fileQueue.Enqueue(i);
-                            
                         }
                     }
                 }
@@ -199,9 +190,7 @@ namespace WindowsFormsApp1
                     else
                     {
                         flag = true;
-
                     }
-
                 }
                 else
                 {
@@ -331,11 +320,6 @@ namespace WindowsFormsApp1
             string path = e.Link.LinkData as string;
             string argument = "/select, \"" + @path + "\"";
             Process.Start("explorer.exe", argument);
-        }
-
-        private void CrawlingBackToYou_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
