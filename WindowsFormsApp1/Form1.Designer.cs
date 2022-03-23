@@ -44,6 +44,9 @@
             this.directory = new System.Windows.Forms.Label();
             this.graph_panel = new System.Windows.Forms.Panel();
             this.viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+            this.full_path_label = new System.Windows.Forms.Label();
+            this.time_spent_label = new System.Windows.Forms.Label();
+            this.full_path_panel = new System.Windows.Forms.TableLayoutPanel();
             this.side_panel.SuspendLayout();
             this.graph_panel.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +75,8 @@
             // 
             // side_panel
             // 
+            this.side_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.side_panel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.side_panel.Controls.Add(this.search_button);
             this.side_panel.Controls.Add(this.BFS_button);
@@ -84,7 +89,6 @@
             this.side_panel.Controls.Add(this.directory);
             this.side_panel.Controls.Add(this.header);
             this.side_panel.Controls.Add(this.choose_folder_label);
-            this.side_panel.Dock = System.Windows.Forms.DockStyle.Left;
             this.side_panel.Location = new System.Drawing.Point(0, 0);
             this.side_panel.Name = "side_panel";
             this.side_panel.Size = new System.Drawing.Size(271, 577);
@@ -92,6 +96,7 @@
             // 
             // search_button
             // 
+            this.search_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.search_button.BackColor = System.Drawing.Color.Black;
             this.search_button.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
             this.search_button.FlatAppearance.BorderSize = 0;
@@ -108,6 +113,7 @@
             // 
             // BFS_button
             // 
+            this.BFS_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BFS_button.AutoSize = true;
             this.BFS_button.Location = new System.Drawing.Point(33, 431);
             this.BFS_button.Name = "BFS_button";
@@ -120,6 +126,7 @@
             // 
             // filename_textbox
             // 
+            this.filename_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.filename_textbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.filename_textbox.ForeColor = System.Drawing.Color.Black;
             this.filename_textbox.Location = new System.Drawing.Point(33, 305);
@@ -130,6 +137,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Montserrat", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(30, 287);
@@ -141,6 +149,7 @@
             // 
             // DFS_button
             // 
+            this.DFS_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.DFS_button.AutoSize = true;
             this.DFS_button.Location = new System.Drawing.Point(33, 406);
             this.DFS_button.Name = "DFS_button";
@@ -153,6 +162,7 @@
             // 
             // search_method_label
             // 
+            this.search_method_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.search_method_label.AutoSize = true;
             this.search_method_label.Font = new System.Drawing.Font("Montserrat", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.search_method_label.Location = new System.Drawing.Point(30, 388);
@@ -164,6 +174,7 @@
             // 
             // find_all_checkbox
             // 
+            this.find_all_checkbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.find_all_checkbox.AutoSize = true;
             this.find_all_checkbox.Location = new System.Drawing.Point(33, 356);
             this.find_all_checkbox.Name = "find_all_checkbox";
@@ -202,18 +213,25 @@
             // 
             // graph_panel
             // 
+            this.graph_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.graph_panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.graph_panel.BackColor = System.Drawing.Color.White;
             this.graph_panel.Controls.Add(this.viewer);
             this.graph_panel.Location = new System.Drawing.Point(295, 33);
             this.graph_panel.Name = "graph_panel";
-            this.graph_panel.Size = new System.Drawing.Size(633, 295);
+            this.graph_panel.Size = new System.Drawing.Size(636, 298);
             this.graph_panel.TabIndex = 5;
             // 
             // viewer
             // 
+            this.viewer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.viewer.ArrowheadLength = 10D;
             this.viewer.AsyncLayout = false;
             this.viewer.AutoScroll = true;
+            this.viewer.AutoSize = true;
             this.viewer.BackwardEnabled = false;
             this.viewer.BuildHitTree = true;
             this.viewer.CurrentLayoutMethod = Microsoft.Msagl.GraphViewerGdi.LayoutMethod.UseSettingsOfTheGraph;
@@ -226,6 +244,7 @@
             this.viewer.LayoutEditingEnabled = true;
             this.viewer.Location = new System.Drawing.Point(0, 0);
             this.viewer.LooseOffsetForRouting = 0.25D;
+            this.viewer.MinimumSize = new System.Drawing.Size(633, 295);
             this.viewer.MouseHitDistance = 0.05D;
             this.viewer.Name = "viewer";
             this.viewer.NavigationVisible = true;
@@ -248,12 +267,59 @@
             this.viewer.ZoomF = 1D;
             this.viewer.ZoomWindowThreshold = 0.05D;
             // 
+            // full_path_label
+            // 
+            this.full_path_label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.full_path_label.AutoSize = true;
+            this.full_path_label.BackColor = System.Drawing.Color.Transparent;
+            this.full_path_label.Font = new System.Drawing.Font("Montserrat", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.full_path_label.Location = new System.Drawing.Point(292, 360);
+            this.full_path_label.Name = "full_path_label";
+            this.full_path_label.Size = new System.Drawing.Size(90, 18);
+            this.full_path_label.TabIndex = 6;
+            this.full_path_label.Text = "Full Path(s):";
+            // 
+            // time_spent_label
+            // 
+            this.time_spent_label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.time_spent_label.AutoSize = true;
+            this.time_spent_label.Location = new System.Drawing.Point(292, 509);
+            this.time_spent_label.Name = "time_spent_label";
+            this.time_spent_label.Size = new System.Drawing.Size(151, 18);
+            this.time_spent_label.TabIndex = 9;
+            this.time_spent_label.Text = "Time Spent: 00.00 ms";
+            // 
+            // full_path_panel
+            // 
+            this.full_path_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.full_path_panel.AutoScroll = true;
+            this.full_path_panel.AutoSize = true;
+            this.full_path_panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.full_path_panel.BackColor = System.Drawing.Color.White;
+            this.full_path_panel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.full_path_panel.ColumnCount = 1;
+            this.full_path_panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.full_path_panel.Location = new System.Drawing.Point(295, 388);
+            this.full_path_panel.MaximumSize = new System.Drawing.Size(0, 102);
+            this.full_path_panel.MinimumSize = new System.Drawing.Size(636, 102);
+            this.full_path_panel.Name = "full_path_panel";
+            this.full_path_panel.RowCount = 1;
+            this.full_path_panel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.full_path_panel.Size = new System.Drawing.Size(636, 102);
+            this.full_path_panel.TabIndex = 8;
+            // 
             // CrawlingBackToYou
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.IndianRed;
+            this.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.ClientSize = new System.Drawing.Size(951, 577);
+            this.Controls.Add(this.time_spent_label);
+            this.Controls.Add(this.full_path_panel);
+            this.Controls.Add(this.full_path_label);
             this.Controls.Add(this.graph_panel);
             this.Controls.Add(this.side_panel);
             this.Cursor = System.Windows.Forms.Cursors.Default;
@@ -264,10 +330,13 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Folder Crawling";
+            this.Load += new System.EventHandler(this.CrawlingBackToYou_Load);
             this.side_panel.ResumeLayout(false);
             this.side_panel.PerformLayout();
             this.graph_panel.ResumeLayout(false);
+            this.graph_panel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -289,6 +358,9 @@
         private System.Windows.Forms.Panel graph_panel;
         private Microsoft.Msagl.GraphViewerGdi.GViewer viewer;
         private Microsoft.Msagl.Drawing.Graph graph;
+        private System.Windows.Forms.Label full_path_label;
+        private System.Windows.Forms.Label time_spent_label;
+        private System.Windows.Forms.TableLayoutPanel full_path_panel;
     }
 }
 

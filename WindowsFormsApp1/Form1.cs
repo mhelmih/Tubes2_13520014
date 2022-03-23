@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace WindowsFormsApp1
 {
@@ -48,10 +49,6 @@ namespace WindowsFormsApp1
 
         private void generateGraph(Folder folder, Searching s)
         {
-            // Masih error
-            // Masih error
-            int j = 0;
-            Boolean flag = false;
             Folder ftemp = folder;
             Stack<Folder> fileStack = new Stack<Folder>();
             Queue<Folder> fileQueue = new Queue<Folder>();
@@ -226,27 +223,69 @@ namespace WindowsFormsApp1
 
         private void search_button_Click(object sender, EventArgs e)
         {
-            Searching search = new Searching(this.dir, this.filename, this.find_all);
-            if(this.isDFS || this.isBFS)
+            // if user didnt choose the starting folder and didnt input the filename, do nothing
+            if (this.dir != "" && this.filename != "")
             {
-                if (this.isBFS)
+                Searching search = new Searching(this.dir, this.filename, this.find_all);
+                // if user didnt choose the search method, do nothing
+                if (this.isDFS || this.isBFS)
                 {
-                    search.BFS();
-                }
-                else
-                {
-                    search.DFS();
-                }
-                Folder a = new Folder(this.dir);
+                    var watch = new Stopwatch();
+                    watch.Start();
 
-                if (this.graph != null)
-                {
-                    this.graph = null;
-                    this.graph = new Microsoft.Msagl.Drawing.Graph("graph");
+                    // find the file
+                    if (this.isBFS)
+                    {
+                        search.BFS();
+                    }
+                    else
+                    {
+                        search.DFS();
+                    }
+
+                    Folder a = new Folder(this.dir);
+
+                    // Clear graph if it has created before
+                    if (this.graph != null)
+                    {
+                        this.graph = null;
+                        this.graph = new Microsoft.Msagl.Drawing.Graph("graph");
+                    }
+
+                    // Clear full path panel if it has created before
+                    this.full_path_panel.Controls.Clear();
+                    this.full_path_panel.RowCount = 1;
+
+                    // Generate graph
+                    generateGraph(a, search);
+                    showGraph();
+
+                    watch.Stop();
+
+                    // Generate full path hyperlinks
+                    if (search.getFilePath().Count() == 0)
+                    {
+                        this.full_path_panel.Controls.Add(new Label() { Text = "File not found." }, 1, this.full_path_panel.RowCount - 1);
+                    }
+                    else if (search.getFilePath().Count() > 0)
+                    {
+                        for (int i = 0; i < search.getFilePath().Count(); i++)
+                        {
+                            LinkLabel link = new LinkLabel();
+                            link.Text = search.getFilePath()[i];
+                            link.AutoSize = true;
+                            link.Links.Add(0, link.Text.Count(), link.Text);
+                            link.Links[0].LinkData = link.Text;
+                            link.LinkClicked += this.full_path_links_LinkClicked;
+                            this.full_path_panel.Controls.Add(link, 1, this.full_path_panel.RowCount - 1);
+                            this.full_path_panel.RowCount += 1;
+                        }
+                    }
+
+                    this.time_spent_label.Text = "Time Spent: " + watch.ElapsedMilliseconds + " ms";
                 }
-                generateGraph(a, search);
-                showGraph();
             }
+            
             
         }
 
@@ -287,5 +326,16 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void full_path_links_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string path = e.Link.LinkData as string;
+            string argument = "/select, \"" + @path + "\"";
+            Process.Start("explorer.exe", argument);
+        }
+
+        private void CrawlingBackToYou_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
