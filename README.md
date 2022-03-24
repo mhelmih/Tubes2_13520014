@@ -1,5 +1,7 @@
 # Folder Crawling
-> 
+> This project is a GUI-based application which model the features of file explorer program of operating system using BFS and DFS algorithm. This feature is implemented with folder crawling technique, where the computer engine will start
+search for files that match the query starting from the starting directory to all children of
+the starting directory until the first file/all files are found or no files are found. Search results will be visualized in the form of tree graph.
 
 
 ## Table of Contents
@@ -17,7 +19,6 @@
 - What problem does it (intend to) solve?
 - What is the purpose of your project?
 - Why did you undertake it?
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
 
 ## Technologies Used
@@ -44,9 +45,16 @@
 - Change directory to bin folder by writing `cd bin`
 - Run 'CrawlingBack2U.exe'
 
+### How to Use
+- Select a starting directory/root folder by clicking the "Choose folder..." button
+- Input the name of the file to be searched
+- Select BFS/DFS method before pressing the search button. If any of these three things are not done, nothing will happen
+- Check the Find All Occurence checkbox if you want to search all files
+- Click the search button
+- Once the search is completed, a folder tree will appear in the white box to the right and a hyperlink below it showing the full path of the file search results
 
 ## Project Status
-_complete_
+This project is _complete_
 
 
 ## Contributors
