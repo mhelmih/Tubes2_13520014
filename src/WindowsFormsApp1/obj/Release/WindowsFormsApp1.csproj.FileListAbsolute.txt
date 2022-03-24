@@ -14,9 +14,6 @@ C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawlin
 C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.CopyComplete
 C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\WindowsFormsApp1\obj\Release\WindowsFormsApp1.exe
 C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\WindowsFormsApp1\obj\Release\WindowsFormsApp1.pdb
-C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\bin\Release\WindowsFormsApp1.exe.config
-C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\bin\Release\WindowsFormsApp1.exe
-C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\bin\Release\WindowsFormsApp1.pdb
 C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\bin\Release\AutomaticGraphLayout.dll
 C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\bin\Release\AutomaticGraphLayout.Drawing.dll
 C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\bin\Release\Microsoft.Msagl.GraphViewerGdi.dll
@@ -28,5 +25,8 @@ C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawlin
 C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.GenerateResource.cache
 C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.CoreCompileInputs.cache
 C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.CopyComplete
-C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\obj\Release\WindowsFormsApp1.exe
-C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\obj\Release\WindowsFormsApp1.pdb
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\bin\Release\CrawlingBack2U.exe.config
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\bin\Release\CrawlingBack2U.exe
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\bin\Release\CrawlingBack2U.pdb
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\obj\Release\CrawlingBack2U.exe
+C:\Users\mfaja\Desktop\Tugas\Semester 4\Stima\Tugas\Tubes_2\Bener5\FolderCrawling\src\WindowsFormsApp1\obj\Release\CrawlingBack2U.pdb
