@@ -19,7 +19,8 @@ namespace WindowsFormsApp1
         Boolean find_all;
         Boolean isDFS;
         Boolean isBFS;
-
+        
+        // Constructor
         public CrawlingBackToYou()
         {
             InitializeComponent();
@@ -31,6 +32,7 @@ namespace WindowsFormsApp1
             isBFS = false;
         }
 
+        // find_all Check box
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (this.find_all)
@@ -42,11 +44,13 @@ namespace WindowsFormsApp1
             }
         }
 
+        // filename Text Box
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             filename = filename_textbox.Text;
         }
 
+        // Generate graph from searching with DFS or BFS
         private void generateGraph(Folder folder, Searching s)
         {
             Folder ftemp = folder;
@@ -81,9 +85,17 @@ namespace WindowsFormsApp1
                             {
                                 this.graph.AddEdge(parent, visit).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                                 this.graph.FindNode(parent).LabelText = Path.GetFileName(parent);
-                                this.graph.FindNode(parent).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                                
                                 this.graph.FindNode(visit).LabelText = Path.GetFileName(visit);
-                                this.graph.FindNode(visit).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+
+                                if(graph.FindNode(parent).Attr.Color != Microsoft.Msagl.Drawing.Color.Green)
+                                {
+                                    this.graph.FindNode(parent).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                                }
+                                if (graph.FindNode(visit).Attr.Color != Microsoft.Msagl.Drawing.Color.Green)
+                                {
+                                    this.graph.FindNode(visit).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                                }
                             }
                             generateFileGraph(temp2, s);
 
@@ -135,9 +147,16 @@ namespace WindowsFormsApp1
                             {
                                 this.graph.AddEdge(parent, visit).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                                 this.graph.FindNode(parent).LabelText = Path.GetFileName(parent);
-                                this.graph.FindNode(parent).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                                 this.graph.FindNode(visit).LabelText = Path.GetFileName(visit);
-                                this.graph.FindNode(visit).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+
+                                if (graph.FindNode(parent).Attr.Color != Microsoft.Msagl.Drawing.Color.Green)
+                                {
+                                    this.graph.FindNode(parent).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                                }
+                                if (graph.FindNode(visit).Attr.Color != Microsoft.Msagl.Drawing.Color.Green)
+                                {
+                                    this.graph.FindNode(visit).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                                }
                             }
                             generateFileGraph(temp2, s);
                         }
@@ -164,6 +183,7 @@ namespace WindowsFormsApp1
             }
         }
 
+        // Generate graph with node files from folder
         private void generateFileGraph(Folder folder, Searching s)
         {
             int j = 0;
@@ -196,7 +216,10 @@ namespace WindowsFormsApp1
                 {
                     this.graph.AddEdge(s1, s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                     this.graph.FindNode(s1).LabelText = Path.GetFileName(s1);
-                    this.graph.FindNode(s1).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                    if(graph.FindNode(s1).Attr.Color != Microsoft.Msagl.Drawing.Color.Green)
+                    {
+                        this.graph.FindNode(s1).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                    }
                     this.graph.FindNode(s2).LabelText = Path.GetFileName(s2);
                     this.graph.FindNode(s2).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                     j++;
@@ -204,12 +227,14 @@ namespace WindowsFormsApp1
             }
         }
 
+        // Show graph to screen
         public void showGraph()
         {
             this.viewer.Graph = this.graph;
             this.viewer.Dock = System.Windows.Forms.DockStyle.Fill;
         }
 
+        // Search event button with DFS or BFS
         private void search_button_Click(object sender, EventArgs e)
         {
             // if user didnt choose the starting folder and didnt input the filename, do nothing
@@ -278,6 +303,7 @@ namespace WindowsFormsApp1
             
         }
 
+        // Choose root folder button
         private void choose_folder_button_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog diag = new FolderBrowserDialog();
@@ -290,6 +316,7 @@ namespace WindowsFormsApp1
             { directory.Text = "No Folder Chosen"; }
         }
 
+        // DFS button check
         private void DFS_button_CheckedChanged(object sender, EventArgs e)
         {
             if (!this.isBFS && !this.isDFS)
@@ -302,6 +329,7 @@ namespace WindowsFormsApp1
             }
         }
 
+        // BFS button check
         private void BFS_button_CheckedChanged(object sender, EventArgs e)
         {
             if (!this.isBFS && !this.isDFS)
@@ -315,6 +343,7 @@ namespace WindowsFormsApp1
             }
         }
 
+        // Full path of searched file hyperlink
         private void full_path_links_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string path = e.Link.LinkData as string;

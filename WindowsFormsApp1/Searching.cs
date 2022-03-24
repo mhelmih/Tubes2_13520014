@@ -9,14 +9,13 @@ namespace WindowsFormsApp1
 {
     internal class Searching
     {
-        private bool isAllOccurence;
-        private string fileToSearch;
-        private string rootPath;
-
-        // Buat path file yang bener
-        private List<String> filePath; // full path file yang benar, hanya berisi 1 bila find 1 occurence
-        private List<String> rightPath; // list string path dari root menuju file yang dicari
-        private List<String> visitedPath;
+        private bool isAllOccurence; // Flag for all occurance or not
+        private string fileToSearch; // String of searched fileName
+        private string rootPath; // String of rootpath for starting search
+        
+        private List<String> filePath; // List of file path
+        private List<String> rightPath; // list of right path from folder to root
+        private List<String> visitedPath; // list of visitedPath of visited folder when searching
 
 
         public Searching(string rootPath, string fileToSearch, bool isAllOccurence)
@@ -33,112 +32,104 @@ namespace WindowsFormsApp1
 
         public void DFS()
         {
-            Folder check = new Folder(this.rootPath);
-            Stack<Folder> temp = new Stack<Folder>();
+            Stack<Folder> folderStack;
+            List<Folder> adjacentFolders;
+            Folder rootFolder, currentFolder;
+            Boolean found;
 
-            string str = "";
-            Boolean found = false;
-            temp.Push(check);
-            if (this.isAllOccurence)
+            rootFolder = new Folder(this.rootPath);
+            folderStack = new Stack<Folder>();
+            found = false;
+
+            // push folder root to stack
+            folderStack.Push(rootFolder);
+            // check if stack contains any folder
+            while (folderStack.Count > 0 && (!found || isAllOccurence))
             {
-                while (temp.Count > 0)
+                // Pop currentFolder from stack
+                currentFolder = folderStack.Pop();
+                visitedPath.Add(currentFolder.getDirname());
+                        
+                // Check file in folder
+                if (currentFolder.checkFile(fileToSearch))
                 {
-                    Folder temp2 = temp.Pop();
-                    this.visitedPath.Add(temp2.getDirname());
-                    
-                        if (temp2.checkFile(this.fileToSearch))
-                        {
-
-                            str = temp2.getFilePath(this.fileToSearch);
-                            generatePath(temp2);
-                            this.filePath.Add(str);
-                        }
-                    
-                    List<Folder> temp3 = temp2.getAdj();
-                    temp3.Reverse();
-                    foreach (Folder i in temp3)
-                    {
-                        temp.Push(i);
-                    }
-
+                    generatePath(currentFolder);
+                    filePath.Add(currentFolder.getFilePath(fileToSearch));
+                    found = true;
                 }
-            }
-            else
-            {
-                while (temp.Count > 0 && !found)
+                    
+                // *optional : Reverse list (only for visualization matter)
+                adjacentFolders = currentFolder.getAdj();
+                adjacentFolders.Reverse();
+                foreach (Folder adjacentFolder in adjacentFolders)
                 {
-                    Folder temp2 = temp.Pop();
-                    this.visitedPath.Add(temp2.getDirname());
-                    if (temp2.getVisited() == false)
-                    {
-                        if (temp2.checkFile(this.fileToSearch))
-                        {
-                            str = temp2.getFilePath(this.fileToSearch);
-                            generatePath(temp2);
-                            this.filePath.Add(str);
-                            found = true;
-                        }
-                    }
-                    List<Folder> temp3 = temp2.getAdj();
-                    temp3.Reverse();
-                    foreach (Folder i in temp3)
-                    {
-                        temp.Push(i);
-                    }
-
+                    // Push adjecency folder to stack
+                    folderStack.Push(adjacentFolder);
                 }
+
             }
         }
 
         public void BFS()
         {
-            Folder rootFolder = new Folder(this.rootPath);
-            bool found = false;
+            Queue<Folder> folderQueue;
+            List<Folder> adjacentFolders;
+            Folder rootFolder, currentFolder;
+            bool found;
 
-            Queue<Folder> fileQueue = new Queue<Folder>();
-            fileQueue.Enqueue(rootFolder);
+            folderQueue = new Queue<Folder>();
+            rootFolder = new Folder(this.rootPath);
+            found = false;
 
+            // enqueue folder root to queue
+            folderQueue.Enqueue(rootFolder);
             // chek if queue is not empty
-            while (fileQueue.Any() && (!found || this.isAllOccurence))
+            while (folderQueue.Any() && (!found || isAllOccurence))
             {
-                Folder current = fileQueue.Dequeue();
-                this.visitedPath.Add(current.getDirname());
-                // check if current folder contains file(s)
-                if (current.getAllFiles().Count() > 0)
+                currentFolder = folderQueue.Dequeue();
+                visitedPath.Add(currentFolder.getDirname());
+                
+                // check if current folder contains file name that we search
+                if (currentFolder.checkFile(fileToSearch))
                 {
-                    // check if current folder contains file name that we search
-                    if (current.checkFile(this.fileToSearch))
-                    {
-                        filePath.Add(current.getFilePath(fileToSearch));
-                        generatePath(current);
-                        found = true;
-                    }
+                    filePath.Add(currentFolder.getFilePath(fileToSearch));
+                    generatePath(currentFolder);
+                    found = true;
                 }
-                foreach (Folder dir in current.getAdj())
+                
+                adjacentFolders = currentFolder.getAdj();
+                // enqueue all adjacent folders of current folder
+                foreach (Folder adjacentFolder in adjacentFolders)
                 {
-                    fileQueue.Enqueue(dir);
+                    folderQueue.Enqueue(adjacentFolder);
                 }
+
             }
                 
 
         }
 
+
         public List<String> getFilePath()
+        // Get List of file path
         {
             return this.filePath;
         }
 
         public List<String> getRightPath()
+        // Get List of Right path from root to file
         {
             return this.rightPath;
         }
 
         public List<String> getVisitedPath()
+        // Get List of visited path
         {
             return this.visitedPath;
         }
 
         public void generatePath(Folder rightDir)
+        // Generate right path from file to root
         {
             Folder temp = rightDir;
             while (temp != null)
@@ -147,8 +138,5 @@ namespace WindowsFormsApp1
                 temp = temp.getParent();
             }
         }
-
-
-        }
-    
+    }
 }

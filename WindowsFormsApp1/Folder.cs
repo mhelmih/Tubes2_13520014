@@ -9,13 +9,13 @@ namespace WindowsFormsApp1
 {
     internal class Folder
     {
-        private string[] listFile;
-        private string[] listFolder;
+        private string[] listFile; // List all file from current folder
+        private string[] listFolder; // List all folder from current folder
 
-        private String dirName;
-        private Folder parent;
-        private List<Folder> adjFolder;
-        Boolean visited;
+        private String dirName; // String of directory of current folder
+        private Folder parent; // Parent folder from current folder
+        private List<Folder> adjFolder; // turing listFolder to List of Folder type
+        Boolean visited; // boolean for visited or not
 
         public Folder()
         {
@@ -56,42 +56,48 @@ namespace WindowsFormsApp1
 
             }
         }
-
+        // setter
         public void setVisited(Boolean val)
         {
             this.visited = val;
         }
-
+        // getter
         public string[] getAllDir()
         {
             return this.listFolder;
         }
 
+        // getter
         public string[] getAllFiles()
         {
             return this.listFile;
         }
 
+        // setter
         public List<Folder> getAdj()
         {
             return this.adjFolder;
         }
 
+        // getter
         public Boolean getVisited()
         {
             return this.visited;
         }
 
+        // getter
         public String getDirname()
         {
             return this.dirName;
         }
 
+        // getter
         public Folder getParent()
         {
             return this.parent;
         }
 
+        // return true if folder contains right file
         public Boolean checkFile(string name)
         {
             Boolean Flag = false;
@@ -112,14 +118,15 @@ namespace WindowsFormsApp1
             return Flag;
         }
 
-        public string getFilePath(string name)
+        // return full path from given filename
+        public string getFilePath(string filename)
         {
             string temp = "";
             int i = 0;
             Boolean flag = false;
             while (i < listFile.Length && !flag)
             {
-                if (Path.GetFileName(listFile[i]).Equals(name))
+                if (Path.GetFileName(listFile[i]).Equals(filename))
                 {
                     temp = listFile[i];
                     flag = true;
